@@ -30,11 +30,13 @@ public class OrderServiceConsumerConfig {
     }
 
     @Bean
-    public ConcurrentKafkaListenerContainerFactory<String, OrderStatusEvent> kafkaMessageConcurrentKafkaListenerContainerFactory(
-            ConsumerFactory<String, OrderStatusEvent> kafkaMessageConsumerFactory
+    public ConcurrentKafkaListenerContainerFactory<String, OrderStatusEvent> kafkaListenerContainerFactory(
+            ConsumerFactory<String, OrderStatusEvent> consumerFactory
     ) {
-        ConcurrentKafkaListenerContainerFactory<String, OrderStatusEvent> factory = new ConcurrentKafkaListenerContainerFactory<>();
-        factory.setConsumerFactory(kafkaMessageConsumerFactory);
+        ConcurrentKafkaListenerContainerFactory<String, OrderStatusEvent> factory =
+                new ConcurrentKafkaListenerContainerFactory<>();
+        factory.setConsumerFactory(consumerFactory);
         return factory;
     }
+
 }

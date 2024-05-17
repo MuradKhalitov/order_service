@@ -13,7 +13,9 @@ import java.util.UUID;
 @Slf4j
 public class orderStatusEventListener {
 
-    @KafkaListener(topics = "order-status-topic", groupId = "order-group")
+
+    @KafkaListener(topics = "order-status-topic", groupId = "order-group",
+            containerFactory = "kafkaListenerContainerFactory")
     public void listenOrderStatusTopic(OrderStatusEvent message,
                                        @Header(value = KafkaHeaders.RECEIVED_KEY, required = false) UUID key,
                                        @Header(value = KafkaHeaders.RECEIVED_TOPIC) String topic,
